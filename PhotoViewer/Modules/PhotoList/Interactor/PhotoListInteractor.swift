@@ -20,7 +20,7 @@ struct PhotoListInteractor: PhotoListInteractorProtocol {
     }
     
     func fetchPhotos(callback: @escaping (Result<[Photo]>) -> Void) {
-        self.networkService.request(with: PhotoRequestData.getPhotos, responseType: PhotosWrapper.self) { result in
+        self.networkService.request(with: PhotosRequestData.getPhotos, responseType: PhotosWrapper.self) { result in
             switch result {
             case .success(let wrapper):
                 guard let wrapper = wrapper else {

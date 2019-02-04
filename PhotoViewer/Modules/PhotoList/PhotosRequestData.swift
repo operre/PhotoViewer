@@ -1,5 +1,5 @@
 //
-//  PhotoRequestData.swift
+//  PhotosRequestData.swift
 //  PhotoViewer
 //
 //  Created by Ohanna Perre on 03/02/2019.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum PhotoRequestData: RequestData {
+enum PhotosRequestData: RequestData {
     case getPhotos
     
     var method: HTTPMethod {
