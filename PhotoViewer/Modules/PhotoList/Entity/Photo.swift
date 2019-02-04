@@ -15,7 +15,7 @@ struct Photo {
     
     let id: String
     var url: String {
-        return "https://farm\(farm).staticflickr.com/\(server)/\(id)_\(secret)_z.jpg"
+        return "https://farm\(self.farm).staticflickr.com/\(self.server)/\(self.id)_\(self.secret)_z.jpg"
     }
 }
 
