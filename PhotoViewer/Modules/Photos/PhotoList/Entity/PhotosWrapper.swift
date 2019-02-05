@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct PhotosWrapper: Decodable {
+struct PhotosWrapper {
     let photos: [Photo]
     
     init(from decoder: Decoder) throws {
@@ -16,7 +16,9 @@ struct PhotosWrapper: Decodable {
         let photosContainer = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .rootNode)
         self.photos = try photosContainer.decode([Photo].self, forKey: .photos)
     }
-    
+}
+
+extension PhotosWrapper: Decodable {
     enum CodingKeys: String, CodingKey {
         case rootNode = "photos"
         case photos = "photo"

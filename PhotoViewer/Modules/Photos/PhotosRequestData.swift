@@ -9,7 +9,8 @@
 import Foundation
 
 enum PhotosRequestData: RequestData {
-    case getPhotos(String)
+    case getPhotos(String) // Search Text
+    case getInfo(String) // Photo ID
     
     var method: HTTPMethod {
         return .get
@@ -25,14 +26,17 @@ enum PhotosRequestData: RequestData {
     
     var queryParameters: [String : String]? {
         var parameters: [String: String] = [:]
+        parameters["api_key"] = "f9cc014fa76b098f9e82f1c288379ea1"
+        parameters["format"] = "json"
+        parameters["nojsoncallback"] = "1"
         
         switch self {
         case .getPhotos(let searchText):
-            parameters["api_key"] = "f9cc014fa76b098f9e82f1c288379ea1"
-            parameters["format"] = "json"
-            parameters["nojsoncallback"] = "1"
             parameters["method"] = "flickr.photos.search"
             parameters["tags"] = searchText
+        case .getInfo(let photoID):
+            parameters["method"] = "flickr.photos.getInfo"
+            parameters["photo_id"] = photoID
         }
         
         return parameters
