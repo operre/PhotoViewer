@@ -9,7 +9,7 @@
 import Foundation
 
 protocol PhotoListInteractorProtocol {
-    func fetchPhotos(callback: @escaping (Result<[Photo]>) -> Void)
+    func fetchPhotos(with searchText: String, callback: @escaping (Result<[Photo]>) -> Void)
 }
 
 struct PhotoListInteractor: PhotoListInteractorProtocol {
@@ -19,8 +19,9 @@ struct PhotoListInteractor: PhotoListInteractorProtocol {
         self.networkService = networkService
     }
     
-    func fetchPhotos(callback: @escaping (Result<[Photo]>) -> Void) {
-        self.networkService.request(with: PhotosRequestData.getPhotos, responseType: PhotosWrapper.self) { result in
+    func fetchPhotos(with searchText: String, callback: @escaping (Result<[Photo]>) -> Void) {
+        self.networkService.request(with: PhotosRequestData.getPhotos(searchText),
+                                    responseType: PhotosWrapper.self) { result in
             switch result {
             case .success(let wrapper):
                 guard let wrapper = wrapper else {

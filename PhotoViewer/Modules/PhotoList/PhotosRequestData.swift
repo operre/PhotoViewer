@@ -9,7 +9,7 @@
 import Foundation
 
 enum PhotosRequestData: RequestData {
-    case getPhotos
+    case getPhotos(String)
     
     var method: HTTPMethod {
         return .get
@@ -25,10 +25,15 @@ enum PhotosRequestData: RequestData {
     
     var queryParameters: [String : String]? {
         var parameters: [String: String] = [:]
-        parameters["api_key"] = "f9cc014fa76b098f9e82f1c288379ea1"
-        parameters["format"] = "json"
-        parameters["nojsoncallback"] = "1"
-        parameters["method"] = "flickr.photos.getRecent"
+        
+        switch self {
+        case .getPhotos(let searchText):
+            parameters["api_key"] = "f9cc014fa76b098f9e82f1c288379ea1"
+            parameters["format"] = "json"
+            parameters["nojsoncallback"] = "1"
+            parameters["method"] = "flickr.photos.search"
+            parameters["tags"] = searchText
+        }
         
         return parameters
     }

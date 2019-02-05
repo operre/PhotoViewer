@@ -35,11 +35,14 @@ class PhotoListView: UICollectionViewController, PhotoListViewProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.collectionView.register((UINib(nibName: PhotoCell.reuseIdentifier, bundle: nil)),
                                       forCellWithReuseIdentifier: PhotoCell.reuseIdentifier)
         self.setupLoadingView()
         self.presenter.handleLoad(for: self)
     }
+    
+    // MARK: - Interface Implementation
     
     func startLoading() {
         DispatchQueue.main.async {

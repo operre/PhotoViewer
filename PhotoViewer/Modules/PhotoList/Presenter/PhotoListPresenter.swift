@@ -24,7 +24,7 @@ class PhotoListPresenter: PhotoListPresenterProtocol {
         self.view = view
         
         self.view.startLoading()
-        self.interactor.fetchPhotos { [weak self] result in
+        self.interactor.fetchPhotos(with: Constants.initialSearch.rawValue) { [weak self] result in
             self?.view.stopLoading()
             switch result {
             case .success(let photos):
@@ -50,5 +50,6 @@ extension PhotoListPresenter {
     enum Constants: String {
         case errorTitle = "Error"
         case errorMessage = "Could't fetch photos."
+        case initialSearch = "Food recipes"
     }
 }
