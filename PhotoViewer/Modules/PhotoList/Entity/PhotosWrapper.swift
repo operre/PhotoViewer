@@ -9,7 +9,7 @@
 import Foundation
 
 struct PhotosWrapper: Decodable {
-    let photos: [Photo]?
+    let photos: [Photo]
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
