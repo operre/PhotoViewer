@@ -25,8 +25,8 @@
 		78E886842208D07A00ABD961 /* PhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78E886822208D07A00ABD961 /* PhotoCell.xib */; };
 		78E8868822090C1A00ABD961 /* UIImageView+Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E8868722090C1A00ABD961 /* UIImageView+Download.swift */; };
 		78E8868A2209D6A000ABD961 /* UIView+LayerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E886892209D6A000ABD961 /* UIView+LayerHelper.swift */; };
+		78E8868D2209E5D700ABD961 /* PhotoListBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E8868C2209E5D700ABD961 /* PhotoListBuilder.swift */; };
 		78F794692204D9A8001C8215 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F794682204D9A8001C8215 /* AppDelegate.swift */; };
-		78F7946B2204D9A8001C8215 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F7946A2204D9A8001C8215 /* ViewController.swift */; };
 		78F794702204D9AA001C8215 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78F7946F2204D9AA001C8215 /* Assets.xcassets */; };
 		78F794732204D9AA001C8215 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78F794712204D9AA001C8215 /* LaunchScreen.storyboard */; };
 		78F7947E2204D9AA001C8215 /* PhotoViewerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F7947D2204D9AA001C8215 /* PhotoViewerTests.swift */; };
@@ -64,9 +64,9 @@
 		78E886822208D07A00ABD961 /* PhotoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhotoCell.xib; sourceTree = "<group>"; };
 		78E8868722090C1A00ABD961 /* UIImageView+Download.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Download.swift"; sourceTree = "<group>"; };
 		78E886892209D6A000ABD961 /* UIView+LayerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+LayerHelper.swift"; sourceTree = "<group>"; };
+		78E8868C2209E5D700ABD961 /* PhotoListBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListBuilder.swift; sourceTree = "<group>"; };
 		78F794652204D9A8001C8215 /* PhotoViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78F794682204D9A8001C8215 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		78F7946A2204D9A8001C8215 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		78F7946F2204D9AA001C8215 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		78F794722204D9AA001C8215 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		78F794742204D9AA001C8215 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -148,6 +148,7 @@
 		78E886612207701600ABD961 /* PhotoList */ = {
 			isa = PBXGroup;
 			children = (
+				78E8868B2209E5C100ABD961 /* Builder */,
 				78E8866E2208BD4E00ABD961 /* View */,
 				78E886792208C0F900ABD961 /* Presenter */,
 				78E8866422077E2600ABD961 /* Entity */,
@@ -201,6 +202,14 @@
 			path = PhotoCell;
 			sourceTree = "<group>";
 		};
+		78E8868B2209E5C100ABD961 /* Builder */ = {
+			isa = PBXGroup;
+			children = (
+				78E8868C2209E5D700ABD961 /* PhotoListBuilder.swift */,
+			);
+			path = Builder;
+			sourceTree = "<group>";
+		};
 		78F7945C2204D9A8001C8215 = {
 			isa = PBXGroup;
 			children = (
@@ -227,7 +236,6 @@
 				78E8864B22064E6F00ABD961 /* Core */,
 				78E886602207700800ABD961 /* Modules */,
 				78F794682204D9A8001C8215 /* AppDelegate.swift */,
-				78F7946A2204D9A8001C8215 /* ViewController.swift */,
 				78F7946F2204D9AA001C8215 /* Assets.xcassets */,
 				78F794712204D9AA001C8215 /* LaunchScreen.storyboard */,
 				78F794742204D9AA001C8215 /* Info.plist */,
@@ -406,6 +414,7 @@
 			files = (
 				78E8868822090C1A00ABD961 /* UIImageView+Download.swift in Sources */,
 				78E8866822077FD000ABD961 /* Photo.swift in Sources */,
+				78E8868D2209E5D700ABD961 /* PhotoListBuilder.swift in Sources */,
 				78E8868A2209D6A000ABD961 /* UIView+LayerHelper.swift in Sources */,
 				78E8865022064F7400ABD961 /* HTTPMethod.swift in Sources */,
 				78E8866622077E6800ABD961 /* PhotosWrapper.swift in Sources */,
@@ -419,7 +428,6 @@
 				78E8865B220651AB00ABD961 /* URL+QueryParameters.swift in Sources */,
 				78E8864D22064F0800ABD961 /* Result.swift in Sources */,
 				78E88654220650A600ABD961 /* NetworkError.swift in Sources */,
-				78F7946B2204D9A8001C8215 /* ViewController.swift in Sources */,
 				78E8866B2207837900ABD961 /* PhotoListInteractor.swift in Sources */,
 				78F794692204D9A8001C8215 /* AppDelegate.swift in Sources */,
 			);
