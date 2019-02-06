@@ -53,9 +53,8 @@ class PhotoDetailView: UIViewController, PhotoDetailViewProtocol {
     }
     
     func load(detailedPhoto: DetailedPhoto) {
-        self.photoImageView.setImage(with: detailedPhoto.photo.url)
-        
         DispatchQueue.main.async {
+            self.photoImageView.setImage(with: detailedPhoto.photo.url)
             self.titleLabel.text = detailedPhoto.title
             self.descriptionLabel.text = detailedPhoto.description
         }
