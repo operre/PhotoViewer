@@ -9,11 +9,15 @@
 import UIKit
 
 protocol PhotoListRouterProtocol {
-    func routeToPhotoDetailView(from viewController: UIViewController, given photoID: String)
+    func routeToPhotoDetailView(from photoListView: PhotoListViewProtocol, given photoID: String)
 }
 
 struct PhotoListRouter: PhotoListRouterProtocol {
-    func routeToPhotoDetailView(from viewController: UIViewController, given photoID: String) {
+    func routeToPhotoDetailView(from photoListView: PhotoListViewProtocol, given photoID: String) {
+        guard let viewController = photoListView as? UIViewController else {
+            return
+        }
+        
         let photoDetailView = PhotoDetailBuilder.makePhotoDetailView(using: photoID)
         viewController.navigationController?.pushViewController(photoDetailView, animated: true)
     }

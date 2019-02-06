@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UIKit
 
 protocol PhotoListPresenterProtocol {
     func handleLoad(for view: PhotoListViewProtocol)
@@ -50,11 +49,7 @@ class PhotoListPresenter: PhotoListPresenterProtocol {
     }
     
     func handleSelection(for photo: Photo) {
-        guard let viewController = self.view as? UIViewController else {
-            return
-        }
-        
-        self.router.routeToPhotoDetailView(from: viewController, given: photo.id)
+        self.router.routeToPhotoDetailView(from: self.view, given: photo.id)
     }
 }
 
