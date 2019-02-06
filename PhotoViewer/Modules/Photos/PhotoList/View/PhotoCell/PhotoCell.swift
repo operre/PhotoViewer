@@ -14,7 +14,6 @@ class PhotoCell: UICollectionViewCell {
     static let reuseIdentifier: String = "PhotoCell"
     
     func configure(with imageURL: URL) {
-        let placeholder = UIImage(named: "placeholder")
-        self.photoImageView.load(url: imageURL, using: placeholder)
+        self.photoImageView.setImage(with: imageURL)
     }
 }
