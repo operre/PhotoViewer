@@ -9,15 +9,22 @@
 import UIKit
 
 protocol PhotoDetailViewProtocol: class {
-    
+    func startLoading()
+    func stopLoading()
+    func load(detailedPhoto: DetailedPhoto)
 }
 
 class PhotoDetailView: UIViewController, PhotoDetailViewProtocol {
+    @IBOutlet weak var photoImageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    
     private let presenter: PhotoDetailPresenterProtocol
+    private let activityIndicator = UIActivityIndicatorView(style: .gray)
     
     init(with presenter: PhotoDetailPresenterProtocol) {
         self.presenter = presenter
-        super.init(nibName: "PhotoDetailView", bundle: nil)
+        super.init(nibName: "PhotoDetailView", bundle: .main)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -27,6 +34,37 @@ class PhotoDetailView: UIViewController, PhotoDetailViewProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.setupLoadingView()
         self.presenter.handleLoad(for: self)
+    }
+    
+    // MARK: - Interface implementation
+    
+    func startLoading() {
+        DispatchQueue.main.async {
+            self.activityIndicator.startAnimating()
+        }
+    }
+    
+    func stopLoading() {
+        DispatchQueue.main.async {
+            self.activityIndicator.stopAnimating()
+        }
+    }
+    
+    func load(detailedPhoto: DetailedPhoto) {
+        self.photoImageView.setImage(with: detailedPhoto.photo.url)
+        
+        DispatchQueue.main.async {
+            self.titleLabel.text = detailedPhoto.title
+            self.descriptionLabel.text = detailedPhoto.description
+        }
+    }
+    
+    // MARK: - Helpers
+    
+    private func setupLoadingView() {
+        self.activityIndicator.center = self.navigationController?.view.center ?? self.view.center
+        self.view.addSubview(self.activityIndicator)
     }
 }

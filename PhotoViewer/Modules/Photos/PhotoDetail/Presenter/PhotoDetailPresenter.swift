@@ -25,5 +25,22 @@ class PhotoDetailPresenter: PhotoDetailPresenterProtocol {
     
     func handleLoad(for view: PhotoDetailViewProtocol) {
         self.view = view
+        
+        self.view.startLoading()
+        self.interactor.fetchPhotoInfo(for: self.photoID) { [weak self] result in
+            self?.view.stopLoading()
+            switch result {
+            case .success(let detailedPhoto):
+                guard let detailedPhoto = detailedPhoto else {
+                    // TODO: Show an error view
+                    return
+                }
+                
+                self?.view.load(detailedPhoto: detailedPhoto)
+            case .error:
+                // TODO: Show an error view
+                break
+            }
+        }
     }
 }
