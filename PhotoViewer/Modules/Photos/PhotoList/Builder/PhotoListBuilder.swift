@@ -13,7 +13,8 @@ struct PhotoListBuilder {
         let parser = JSONParser()
         let networkService = NetworkService(parser: parser)
         let interactor = PhotoListInteractor(with: networkService)
-        let presenter = PhotoListPresenter(with: interactor)
+        let router = PhotoListRouter()
+        let presenter = PhotoListPresenter(with: interactor, router)
         return PhotoListView(with: presenter)
     }
 }
