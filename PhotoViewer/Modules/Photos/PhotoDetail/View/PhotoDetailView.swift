@@ -25,6 +25,7 @@ class PhotoDetailView: UIViewController, PhotoDetailViewProtocol {
     init(with presenter: PhotoDetailPresenterProtocol) {
         self.presenter = presenter
         super.init(nibName: "PhotoDetailView", bundle: .main)
+        self.navigationItem.largeTitleDisplayMode = .never
     }
     
     required init?(coder aDecoder: NSCoder) {

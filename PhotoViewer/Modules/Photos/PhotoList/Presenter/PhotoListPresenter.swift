@@ -27,6 +27,7 @@ class PhotoListPresenter: PhotoListPresenterProtocol {
     
     func handleLoad(for view: PhotoListViewProtocol) {
         self.view = view
+        self.view.load(title: Constants.pageTitle.rawValue)
         self.fetchPhotos()
     }
     
@@ -72,9 +73,10 @@ class PhotoListPresenter: PhotoListPresenterProtocol {
 
 extension PhotoListPresenter {
     enum Constants: String {
+        case pageTitle = "Photos"
+        case initialSearch = "Food recipes"
         case errorTitle = "Error"
         case errorMessage = "Could't fetch photos."
         case errorButtonTitle = "Try again"
-        case initialSearch = "Food recipes"
     }
 }

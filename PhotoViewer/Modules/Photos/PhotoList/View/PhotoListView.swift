@@ -9,6 +9,7 @@
 import UIKit
 
 protocol PhotoListViewProtocol: class {
+    func load(title: String)
     func startLoading()
     func stopLoading()
     func load(photos: [Photo])
@@ -21,7 +22,7 @@ class PhotoListView: UICollectionViewController, PhotoListViewProtocol {
     
     private var photos: [Photo] = []
     private let itemsPerRow: CGFloat = 2
-    private let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
+    private let sectionInset: CGFloat = 20.0
     private let activityIndicator = UIActivityIndicatorView(style: .gray)
     
     init(with presenter: PhotoListPresenterProtocol) {
@@ -43,6 +44,10 @@ class PhotoListView: UICollectionViewController, PhotoListViewProtocol {
     }
     
     // MARK: - Interface Implementation
+    
+    func load(title: String) {
+        self.navigationController?.navigationBar.topItem?.title = title
+    }
     
     func startLoading() {
         DispatchQueue.main.async {
@@ -115,7 +120,7 @@ extension PhotoListView {
 
 extension PhotoListView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let paddingSpace = self.sectionInsets.left * (self.itemsPerRow + 1)
+        let paddingSpace = self.sectionInset * (self.itemsPerRow + 1)
         let availableWidth = self.view.frame.width - paddingSpace
         let widthPerItem = availableWidth / self.itemsPerRow
         
@@ -123,11 +128,15 @@ extension PhotoListView: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return self.sectionInsets
+        let sectionInsets = UIEdgeInsets(top: self.sectionInset,
+                                         left: self.sectionInset,
+                                         bottom: self.sectionInset,
+                                         right: self.sectionInset)
+        return sectionInsets
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return self.sectionInsets.left
+        return self.sectionInset
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
