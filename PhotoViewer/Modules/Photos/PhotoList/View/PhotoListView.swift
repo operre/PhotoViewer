@@ -13,7 +13,7 @@ protocol PhotoListViewProtocol: class {
     func stopLoading()
     func load(photos: [Photo])
     func showEmptyState()
-    func showAlert(title: String, message: String)
+    func showAlert(title: String, message: String, actionTitle: String, handler: @escaping () -> Void)
 }
 
 class PhotoListView: UICollectionViewController, PhotoListViewProtocol {
@@ -68,10 +68,14 @@ class PhotoListView: UICollectionViewController, PhotoListViewProtocol {
         // TODO: Create an empty state view
     }
     
-    func showAlert(title: String, message: String) {
+    func showAlert(title: String, message: String, actionTitle: String, handler: @escaping () -> Void) {
         DispatchQueue.main.async {
             let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            let action = UIAlertAction(title: actionTitle, style: .default, handler: { _ in
+                handler()
+            })
+            alert.addAction(action)
+            
             self.present(alert, animated: true, completion: nil)
         }
     }

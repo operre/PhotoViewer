@@ -23,16 +23,29 @@ class PhotoListPresenter: PhotoListPresenterProtocol {
         self.router = router
     }
     
+    // MARK: - Interface implementation
+    
     func handleLoad(for view: PhotoListViewProtocol) {
         self.view = view
-        
+        self.fetchPhotos()
+    }
+    
+    func handleSelection(for photo: Photo) {
+        self.router.routeToPhotoDetailView(from: self.view, given: photo.id)
+    }
+    
+    // MARK: - Helpers
+    
+    private func fetchPhotos() {
         self.view.startLoading()
+        
         self.interactor.fetchPhotos(with: Constants.initialSearch.rawValue) { [weak self] result in
             self?.view.stopLoading()
+            
             switch result {
             case .success(let photos):
                 guard let photos = photos else {
-                    self?.view.showAlert(title: Constants.errorTitle.rawValue, message: Constants.errorMessage.rawValue)
+                    self?.showErrorAlert()
                     return
                 }
                 
@@ -43,13 +56,17 @@ class PhotoListPresenter: PhotoListPresenterProtocol {
                 
                 self?.view.load(photos: photos)
             case .error:
-                self?.view.showAlert(title: Constants.errorTitle.rawValue, message: Constants.errorMessage.rawValue)
+                self?.showErrorAlert()
             }
         }
     }
     
-    func handleSelection(for photo: Photo) {
-        self.router.routeToPhotoDetailView(from: self.view, given: photo.id)
+    private func showErrorAlert() {
+        self.view.showAlert(title: Constants.errorTitle.rawValue,
+                            message: Constants.errorMessage.rawValue,
+                            actionTitle: Constants.errorButtonTitle.rawValue) { [weak self] in
+            self?.fetchPhotos()
+        }
     }
 }
 
@@ -57,6 +74,7 @@ extension PhotoListPresenter {
     enum Constants: String {
         case errorTitle = "Error"
         case errorMessage = "Could't fetch photos."
+        case errorButtonTitle = "Try again"
         case initialSearch = "Food recipes"
     }
 }
