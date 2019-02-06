@@ -125,4 +125,9 @@ extension PhotoListView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return self.sectionInsets.left
     }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let photo = self.photos[indexPath.item]
+        self.presenter.handleSelection(for: photo)
+    }
 }

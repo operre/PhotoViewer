@@ -7,17 +7,21 @@
 //
 
 import Foundation
+import UIKit
 
 protocol PhotoListPresenterProtocol {
     func handleLoad(for view: PhotoListViewProtocol)
+    func handleSelection(for photo: Photo)
 }
 
 class PhotoListPresenter: PhotoListPresenterProtocol {
     private let interactor: PhotoListInteractorProtocol
+    private let router: PhotoListRouterProtocol
     private weak var view: PhotoListViewProtocol!
     
-    init(with interactor: PhotoListInteractorProtocol) {
+    init(with interactor: PhotoListInteractorProtocol, _ router: PhotoListRouterProtocol) {
         self.interactor = interactor
+        self.router = router
     }
     
     func handleLoad(for view: PhotoListViewProtocol) {
@@ -43,6 +47,14 @@ class PhotoListPresenter: PhotoListPresenterProtocol {
                 self?.view.showAlert(title: Constants.errorTitle.rawValue, message: Constants.errorMessage.rawValue)
             }
         }
+    }
+    
+    func handleSelection(for photo: Photo) {
+        guard let viewController = self.view as? UIViewController else {
+            return
+        }
+        
+        self.router.routeToPhotoDetailView(from: viewController, given: photo.id)
     }
 }
 
