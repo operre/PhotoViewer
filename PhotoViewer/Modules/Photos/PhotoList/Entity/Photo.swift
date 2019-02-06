@@ -15,7 +15,12 @@ struct Photo {
     
     let id: String
     var url: URL {
-        return URL(string: "https://farm\(self.farm).staticflickr.com/\(self.server)/\(self.id)_\(self.secret)_z.jpg")!
+        let photoURLString = "https://farm\(self.farm).staticflickr.com/\(self.server)/\(self.id)_\(self.secret)_z.jpg"
+        guard let photoURL = URL(string: photoURLString) else {
+            fatalError("Unable to create photo url.")
+        }
+        
+        return photoURL
     }
 }
 
