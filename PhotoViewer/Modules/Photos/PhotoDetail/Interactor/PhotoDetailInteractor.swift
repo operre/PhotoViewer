@@ -9,7 +9,7 @@
 import Foundation
 
 protocol PhotoDetailInteractorProtocol {
-    func fetchPhotoInfo(by id: String, callback: @escaping (Result<DetailedPhoto>) -> Void)
+    func fetchPhotoInfo(for id: String, callback: @escaping (Result<DetailedPhoto>) -> Void)
 }
 
 struct PhotoDetailInteractor: PhotoDetailInteractorProtocol {
@@ -19,7 +19,7 @@ struct PhotoDetailInteractor: PhotoDetailInteractorProtocol {
         self.networkService = networkService
     }
     
-    func fetchPhotoInfo(by id: String, callback: @escaping (Result<DetailedPhoto>) -> Void) {
+    func fetchPhotoInfo(for id: String, callback: @escaping (Result<DetailedPhoto>) -> Void) {
         self.networkService.request(with: PhotosRequestData.getInfo(id), responseType: DetailedPhoto.self) { result in
             switch result {
             case .success(let detailedPhoto):
