@@ -26,7 +26,7 @@ class PhotoListView: UICollectionViewController, PhotoListViewProtocol {
     
     init(with presenter: PhotoListPresenterProtocol) {
         self.presenter = presenter
-        super.init(nibName: "PhotoListView", bundle: nil)
+        super.init(nibName: "PhotoListView", bundle: .main)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -36,7 +36,7 @@ class PhotoListView: UICollectionViewController, PhotoListViewProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.collectionView.register((UINib(nibName: PhotoCell.reuseIdentifier, bundle: nil)),
+        self.collectionView.register((UINib(nibName: PhotoCell.reuseIdentifier, bundle: .main)),
                                       forCellWithReuseIdentifier: PhotoCell.reuseIdentifier)
         self.setupLoadingView()
         self.presenter.handleLoad(for: self)
