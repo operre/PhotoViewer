@@ -79,7 +79,7 @@ class PhotoListView: UICollectionViewController, PhotoListViewProtocol {
     // MARK: - Helpers
     
     private func setupLoadingView() {
-        self.activityIndicator.center = self.view.center
+        self.activityIndicator.center = self.navigationController?.view.center ?? self.view.center
         self.view.addSubview(self.activityIndicator)
     }
 }
