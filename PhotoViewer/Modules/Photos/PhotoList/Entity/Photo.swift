@@ -24,11 +24,24 @@ struct Photo {
     }
 }
 
+// MARK: - Decodable
+
 extension Photo: Decodable {
     enum CodingKeys: CodingKey {
         case id
         case farm
         case server
         case secret
+    }
+}
+
+// MARK: - Tests
+
+extension Photo {
+    init(id: String) {
+        self.id = id
+        self.farm = 0
+        self.server = ""
+        self.secret = ""
     }
 }

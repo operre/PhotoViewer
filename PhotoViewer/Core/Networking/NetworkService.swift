@@ -14,9 +14,11 @@ protocol NetworkServiceProtocol {
 
 struct NetworkService: NetworkServiceProtocol {
     private let parser: JSONParserProtocol
+    private let session: URLSession
     
-    init(parser: JSONParserProtocol) {
+    init(parser: JSONParserProtocol, session: URLSession = URLSession.shared) {
         self.parser = parser
+        self.session = session
     }
     
     func request<T: Decodable>(with requestData: RequestData,
@@ -36,7 +38,7 @@ struct NetworkService: NetworkServiceProtocol {
     }
     
     private func perform<T: Decodable>(request: URLRequest, handler: @escaping (Result<T>) -> Void) {
-        let dataTask = URLSession.shared.dataTask(with: request) { (data, _, error) in
+        let dataTask = self.session.dataTask(with: request) { (data, _, error) in
             guard error == nil else {
                 handler(.error(error))
                 return
