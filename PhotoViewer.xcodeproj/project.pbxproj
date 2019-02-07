@@ -23,8 +23,11 @@
 		787042AC220C687A00381056 /* PhotoListPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787042AB220C687A00381056 /* PhotoListPresenterTests.swift */; };
 		787042AE220C7E9100381056 /* MockedError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787042AD220C7E9100381056 /* MockedError.swift */; };
 		787042B1220C7FA800381056 /* PhotoListInteractorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787042B0220C7FA800381056 /* PhotoListInteractorMock.swift */; };
-		787042B3220C7FE200381056 /* PhotoListViewMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787042B2220C7FE200381056 /* PhotoListViewMock.swift */; };
+		787042B3220C7FE200381056 /* PhotoListViewMockToPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787042B2220C7FE200381056 /* PhotoListViewMockToPresenter.swift */; };
 		787042B5220C83E100381056 /* PhotoListRouterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787042B4220C83E100381056 /* PhotoListRouterMock.swift */; };
+		787042B8220CA32000381056 /* PhotoListRouterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787042B7220CA32000381056 /* PhotoListRouterTests.swift */; };
+		787042BD220CAC3900381056 /* PhotoListViewMockToRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787042BC220CAC3900381056 /* PhotoListViewMockToRouter.swift */; };
+		787042BF220CAC6200381056 /* NavigationControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787042BE220CAC6200381056 /* NavigationControllerMock.swift */; };
 		78E8864D22064F0800ABD961 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E8864C22064F0800ABD961 /* Result.swift */; };
 		78E8865022064F7400ABD961 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E8864F22064F7400ABD961 /* HTTPMethod.swift */; };
 		78E8865222064F9000ABD961 /* RequestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E8865122064F9000ABD961 /* RequestData.swift */; };
@@ -79,8 +82,11 @@
 		787042AB220C687A00381056 /* PhotoListPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListPresenterTests.swift; sourceTree = "<group>"; };
 		787042AD220C7E9100381056 /* MockedError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedError.swift; sourceTree = "<group>"; };
 		787042B0220C7FA800381056 /* PhotoListInteractorMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListInteractorMock.swift; sourceTree = "<group>"; };
-		787042B2220C7FE200381056 /* PhotoListViewMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListViewMock.swift; sourceTree = "<group>"; };
+		787042B2220C7FE200381056 /* PhotoListViewMockToPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListViewMockToPresenter.swift; sourceTree = "<group>"; };
 		787042B4220C83E100381056 /* PhotoListRouterMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListRouterMock.swift; sourceTree = "<group>"; };
+		787042B7220CA32000381056 /* PhotoListRouterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListRouterTests.swift; sourceTree = "<group>"; };
+		787042BC220CAC3900381056 /* PhotoListViewMockToRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListViewMockToRouter.swift; sourceTree = "<group>"; };
+		787042BE220CAC6200381056 /* NavigationControllerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationControllerMock.swift; sourceTree = "<group>"; };
 		78E8864C22064F0800ABD961 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		78E8864F22064F7400ABD961 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		78E8865122064F9000ABD961 /* RequestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestData.swift; sourceTree = "<group>"; };
@@ -248,6 +254,7 @@
 		787042A1220BC4A600381056 /* PhotoList */ = {
 			isa = PBXGroup;
 			children = (
+				787042B6220CA14700381056 /* Router */,
 				787042AA220C684E00381056 /* Presenter */,
 				787042A2220BC4CD00381056 /* Interactor */,
 			);
@@ -284,8 +291,26 @@
 			isa = PBXGroup;
 			children = (
 				787042B0220C7FA800381056 /* PhotoListInteractorMock.swift */,
-				787042B2220C7FE200381056 /* PhotoListViewMock.swift */,
+				787042B2220C7FE200381056 /* PhotoListViewMockToPresenter.swift */,
 				787042B4220C83E100381056 /* PhotoListRouterMock.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		787042B6220CA14700381056 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				787042BB220CAC2300381056 /* Mocks */,
+				787042B7220CA32000381056 /* PhotoListRouterTests.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		787042BB220CAC2300381056 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				787042BC220CAC3900381056 /* PhotoListViewMockToRouter.swift */,
+				787042BE220CAC6200381056 /* NavigationControllerMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -633,13 +658,16 @@
 			files = (
 				787042A6220BC60400381056 /* PhotoListInteractorTests.swift in Sources */,
 				787042AE220C7E9100381056 /* MockedError.swift in Sources */,
+				787042BD220CAC3900381056 /* PhotoListViewMockToRouter.swift in Sources */,
 				7870429E220BB48200381056 /* RequestDataMock.swift in Sources */,
 				787042B5220C83E100381056 /* PhotoListRouterMock.swift in Sources */,
-				787042B3220C7FE200381056 /* PhotoListViewMock.swift in Sources */,
+				787042B3220C7FE200381056 /* PhotoListViewMockToPresenter.swift in Sources */,
 				787042A9220BCFB900381056 /* NetworkServiceMock.swift in Sources */,
 				7870429C220BB44100381056 /* URLSessionMock.swift in Sources */,
+				787042B8220CA32000381056 /* PhotoListRouterTests.swift in Sources */,
 				787042AC220C687A00381056 /* PhotoListPresenterTests.swift in Sources */,
 				787042B1220C7FA800381056 /* PhotoListInteractorMock.swift in Sources */,
+				787042BF220CAC6200381056 /* NavigationControllerMock.swift in Sources */,
 				7870429A220BB3F800381056 /* JSONParserMock.swift in Sources */,
 				78704297220B8A6600381056 /* NetworkServiceTests.swift in Sources */,
 			);

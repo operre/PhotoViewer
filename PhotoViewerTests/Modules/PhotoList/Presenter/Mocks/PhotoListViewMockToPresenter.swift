@@ -9,7 +9,7 @@
 import Foundation
 @testable import PhotoViewer
 
-class PhotoListViewMock: PhotoListViewProtocol {
+class PhotoListViewMockToPresenter: PhotoListViewProtocol {
     var titleSetted: String?
     var photosSetted: [Photo]?
     var didLoadingStart: Bool = false

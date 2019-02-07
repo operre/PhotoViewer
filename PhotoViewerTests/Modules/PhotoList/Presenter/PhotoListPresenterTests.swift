@@ -22,7 +22,7 @@ class PhotoListPresenterTests: XCTestCase {
         interactorMock.result = mockedResult
         
         let routerMock = PhotoListRouterMock()
-        let viewMock = PhotoListViewMock()
+        let viewMock = PhotoListViewMockToPresenter()
         let presenter = PhotoListPresenter(with: interactorMock, routerMock)
         
         // When
@@ -46,7 +46,7 @@ class PhotoListPresenterTests: XCTestCase {
         interactorMock.result = emptyResult
         
         let routerMock = PhotoListRouterMock()
-        let viewMock = PhotoListViewMock()
+        let viewMock = PhotoListViewMockToPresenter()
         let presenter = PhotoListPresenter(with: interactorMock, routerMock)
         
         // When
@@ -70,7 +70,7 @@ class PhotoListPresenterTests: XCTestCase {
         interactorMock.result = invalidResult
         
         let routerMock = PhotoListRouterMock()
-        let viewMock = PhotoListViewMock()
+        let viewMock = PhotoListViewMockToPresenter()
         let presenter = PhotoListPresenter(with: interactorMock, routerMock)
         
         // When
@@ -95,7 +95,7 @@ class PhotoListPresenterTests: XCTestCase {
         interactorMock.result = mockedResult
         
         let routerMock = PhotoListRouterMock()
-        let viewMock = PhotoListViewMock()
+        let viewMock = PhotoListViewMockToPresenter()
         let presenter = PhotoListPresenter(with: interactorMock, routerMock)
         
         // When
@@ -117,7 +117,7 @@ class PhotoListPresenterTests: XCTestCase {
         // Given
         let expectedPhoto = Photo(id: "1234")
         
-        let viewMock = PhotoListViewMock()
+        let viewMock = PhotoListViewMockToPresenter()
         let interactorMock = PhotoListInteractorMock()
         let routerMock = PhotoListRouterMock()
         let presenter = PhotoListPresenter(with: interactorMock, routerMock)
@@ -127,7 +127,7 @@ class PhotoListPresenterTests: XCTestCase {
         presenter.handleSelection(for: expectedPhoto)
         
         // Then
-        XCTAssertTrue(routerMock.viewSetted is PhotoListViewMock)
+        XCTAssertTrue(routerMock.viewSetted is PhotoListViewMockToPresenter)
         XCTAssertEqual(routerMock.photoIDSetted, expectedPhoto.id)
     }
 }
