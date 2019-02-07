@@ -73,10 +73,4 @@ class PhotoListInteractorTests: XCTestCase {
             }
         }
     }
-    
-    // MARK: - Error Implementation
-    
-    enum MockedError: Error {
-        case anyError
-    }
 }

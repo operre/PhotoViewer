@@ -120,12 +120,6 @@ class NetworkServiceTests: XCTestCase {
             }
         }
     }
-    
-    // MARK: - Error Implementation
-    
-    enum MockedError: Error {
-        case anyError
-    }
 }
 
 // MARK: - Photo Equatable
