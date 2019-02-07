@@ -9,19 +9,12 @@
 import Foundation
 @testable import PhotoViewer
 
-struct NetworkServiceMock: NetworkServiceProtocol {
-    var result: Any?
-    var error: Error?
+struct NetworkServiceMock<Type: Decodable>: NetworkServiceProtocol {
+    var result: Result<Type>?
     
-    func request<T>(with: RequestData,
+    func request<T>(with requestData: RequestData,
                     responseType: T.Type,
                     handler: @escaping (Result<T>) -> Void) where T: Decodable {
-        if let result = self.result {
-            handler(.success(result as? T))
-        }
-        
-        if let error = error {
-            handler(.error(error))
-        }
+        handler(self.result as! Result<T>)
     }
 }

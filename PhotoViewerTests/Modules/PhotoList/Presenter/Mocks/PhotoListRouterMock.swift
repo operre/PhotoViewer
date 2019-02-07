@@ -10,11 +10,11 @@ import Foundation
 @testable import PhotoViewer
 
 class PhotoListRouterMock: PhotoListRouterProtocol {
-    var viewSetted: PhotoListViewProtocol?
-    var photoIDSetted: String?
+    var view: PhotoListViewProtocol?
+    var photoID: String?
     
     func routeToPhotoDetailView(from photoListView: PhotoListViewProtocol, given photoID: String) {
-        self.viewSetted = photoListView
-        self.photoIDSetted = photoID
+        self.view = photoListView
+        self.photoID = photoID
     }
 }

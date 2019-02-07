@@ -13,10 +13,6 @@ struct PhotoListInteractorMock: PhotoListInteractorProtocol {
     var result: Result<[Photo]>?
     
     func fetchPhotos(with searchText: String, callback: @escaping (Result<[Photo]>) -> Void) {
-        guard let result = self.result else {
-            return
-        }
-        
-        callback(result)
+        callback(result!)
     }
 }

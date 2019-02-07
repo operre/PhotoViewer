@@ -13,7 +13,7 @@ class NetworkServiceTests: XCTestCase {
 
     func testRequestPhotosWithSuccess() {
         // Given
-        let mockedResult: [Photo]? = [Photo(id: "1234"), Photo(id: "5678")]
+        let mockedResult = [Photo(id: "1234"), Photo(id: "5678")]
         
         var parserMock = JSONPaserMock()
         parserMock.parsedData = mockedResult

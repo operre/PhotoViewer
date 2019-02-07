@@ -29,13 +29,13 @@ class PhotoListPresenterTests: XCTestCase {
         presenter.handleLoad(for: viewMock)
         
         // Then
-        XCTAssertTrue(viewMock.didLoadingStart)
-        XCTAssertTrue(viewMock.didLoadingStop)
-        XCTAssertEqual(viewMock.titleSetted, "Photos")
+        XCTAssertTrue(viewMock.didCallStartLoading)
+        XCTAssertTrue(viewMock.didCallStopLoading)
+        XCTAssertEqual(viewMock.title, "Photos")
         
-        XCTAssertEqual(viewMock.photosSetted, expectedPhotos)
-        XCTAssertFalse(viewMock.wasAlertDisplayed)
-        XCTAssertFalse(viewMock.wasEmptyStateDisplayed)
+        XCTAssertEqual(viewMock.photos, expectedPhotos)
+        XCTAssertFalse(viewMock.didCallShowAlert)
+        XCTAssertFalse(viewMock.didCallEmptyState)
     }
     
     func testHandleLoadWithAnEmptyResult() {
@@ -53,13 +53,13 @@ class PhotoListPresenterTests: XCTestCase {
         presenter.handleLoad(for: viewMock)
         
         // Then
-        XCTAssertTrue(viewMock.didLoadingStart)
-        XCTAssertTrue(viewMock.didLoadingStop)
-        XCTAssertEqual(viewMock.titleSetted, "Photos")
+        XCTAssertTrue(viewMock.didCallStartLoading)
+        XCTAssertTrue(viewMock.didCallStopLoading)
+        XCTAssertEqual(viewMock.title, "Photos")
         
-        XCTAssertNil(viewMock.photosSetted)
-        XCTAssertTrue(viewMock.wasEmptyStateDisplayed)
-        XCTAssertFalse(viewMock.wasAlertDisplayed)
+        XCTAssertNil(viewMock.photos)
+        XCTAssertTrue(viewMock.didCallEmptyState)
+        XCTAssertFalse(viewMock.didCallShowAlert)
     }
     
     func testHandleLoadWithAnInvalidResult() {
@@ -77,13 +77,13 @@ class PhotoListPresenterTests: XCTestCase {
         presenter.handleLoad(for: viewMock)
         
         // Then
-        XCTAssertTrue(viewMock.didLoadingStart)
-        XCTAssertTrue(viewMock.didLoadingStop)
-        XCTAssertEqual(viewMock.titleSetted, "Photos")
+        XCTAssertTrue(viewMock.didCallStartLoading)
+        XCTAssertTrue(viewMock.didCallStopLoading)
+        XCTAssertEqual(viewMock.title, "Photos")
         
-        XCTAssertNil(viewMock.photosSetted)
-        XCTAssertFalse(viewMock.wasEmptyStateDisplayed)
-        XCTAssertTrue(viewMock.wasAlertDisplayed)
+        XCTAssertNil(viewMock.photos)
+        XCTAssertFalse(viewMock.didCallEmptyState)
+        XCTAssertTrue(viewMock.didCallShowAlert)
     }
     
     func testHandleLoadWithAnError() {
@@ -102,13 +102,13 @@ class PhotoListPresenterTests: XCTestCase {
         presenter.handleLoad(for: viewMock)
         
         // Then
-        XCTAssertTrue(viewMock.didLoadingStart)
-        XCTAssertTrue(viewMock.didLoadingStop)
-        XCTAssertEqual(viewMock.titleSetted, "Photos")
+        XCTAssertTrue(viewMock.didCallStartLoading)
+        XCTAssertTrue(viewMock.didCallStopLoading)
+        XCTAssertEqual(viewMock.title, "Photos")
         
-        XCTAssertNil(viewMock.photosSetted)
-        XCTAssertFalse(viewMock.wasEmptyStateDisplayed)
-        XCTAssertTrue(viewMock.wasAlertDisplayed)
+        XCTAssertNil(viewMock.photos)
+        XCTAssertFalse(viewMock.didCallEmptyState)
+        XCTAssertTrue(viewMock.didCallShowAlert)
     }
     
     // MARK: - HandleSelection tests
@@ -117,17 +117,20 @@ class PhotoListPresenterTests: XCTestCase {
         // Given
         let expectedPhoto = Photo(id: "1234")
         
-        let viewMock = PhotoListViewMockToPresenter()
-        let interactorMock = PhotoListInteractorMock()
+        var interactorMock = PhotoListInteractorMock()
+        interactorMock.result = .success(nil)
+        
         let routerMock = PhotoListRouterMock()
         let presenter = PhotoListPresenter(with: interactorMock, routerMock)
+        
+        let viewMock = PhotoListViewMockToPresenter()
         presenter.handleLoad(for: viewMock)
         
         // When
         presenter.handleSelection(for: expectedPhoto)
         
         // Then
-        XCTAssertTrue(routerMock.viewSetted is PhotoListViewMockToPresenter)
-        XCTAssertEqual(routerMock.photoIDSetted, expectedPhoto.id)
+        XCTAssertTrue(routerMock.view is PhotoListViewMockToPresenter)
+        XCTAssertEqual(routerMock.photoID, expectedPhoto.id)
     }
 }

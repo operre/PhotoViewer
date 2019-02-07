@@ -13,10 +13,11 @@ class PhotoListInteractorTests: XCTestCase {
 
     func testFetchPhotosWithSuccess() {
         // Given
-        let expectedResult = PhotosWrapper(photos: [Photo(id: "1234")])
+        let expectedPhotosWrapper = PhotosWrapper(photos: [Photo(id: "1234")])
+        let mockedResult: Result<PhotosWrapper> = .success(expectedPhotosWrapper)
         
-        var networkServiceMock = NetworkServiceMock()
-        networkServiceMock.result = expectedResult
+        var networkServiceMock = NetworkServiceMock<PhotosWrapper>()
+        networkServiceMock.result = mockedResult
         
         let interactor = PhotoListInteractor(with: networkServiceMock)
         
@@ -25,7 +26,7 @@ class PhotoListInteractorTests: XCTestCase {
             switch result {
             case .success(let photos):
                 // Then
-                XCTAssertEqual(photos, expectedResult.photos)
+                XCTAssertEqual(photos, expectedPhotosWrapper.photos)
             case .error:
                 XCTFail()
             }
@@ -35,9 +36,10 @@ class PhotoListInteractorTests: XCTestCase {
     func testFetchPhotosWithError() {
         // Given
         let expectedError = MockedError.anyError
+        let mockedResult: Result<PhotosWrapper> = .error(expectedError)
         
-        var networkServiceMock = NetworkServiceMock()
-        networkServiceMock.error = expectedError
+        var networkServiceMock = NetworkServiceMock<PhotosWrapper>()
+        networkServiceMock.result = mockedResult
         
         let interactor = PhotoListInteractor(with: networkServiceMock)
         
@@ -53,15 +55,15 @@ class PhotoListInteractorTests: XCTestCase {
         }
     }
     
-    func testFetchPhotosWithSuccessButWithInvalidResult() {
+    func testFetchPhotosWithSuccessButWithNilValue() {
         // Given
-        let wrongResult = Photo(id: "1234")
+        let mockedResult: Result<PhotosWrapper> = .success(nil)
 
-        var networkServiceMock = NetworkServiceMock()
-        networkServiceMock.result = wrongResult
-        
+        var networkServiceMock = NetworkServiceMock<PhotosWrapper>()
+        networkServiceMock.result = mockedResult
+
         let interactor = PhotoListInteractor(with: networkServiceMock)
-        
+
         // When
         interactor.fetchPhotos(with: "") { result in
             switch result {

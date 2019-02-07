@@ -10,34 +10,34 @@ import Foundation
 @testable import PhotoViewer
 
 class PhotoListViewMockToPresenter: PhotoListViewProtocol {
-    var titleSetted: String?
-    var photosSetted: [Photo]?
-    var didLoadingStart: Bool = false
-    var didLoadingStop: Bool = false
-    var wasEmptyStateDisplayed: Bool = false
-    var wasAlertDisplayed: Bool = false
+    var title: String?
+    var photos: [Photo]?
+    var didCallStartLoading: Bool = false
+    var didCallStopLoading: Bool = false
+    var didCallEmptyState: Bool = false
+    var didCallShowAlert: Bool = false
     
     func load(title: String) {
-        self.titleSetted = title
+        self.title = title
     }
     
     func startLoading() {
-        self.didLoadingStart = true
+        self.didCallStartLoading = true
     }
     
     func stopLoading() {
-        self.didLoadingStop = true
+        self.didCallStopLoading = true
     }
     
     func load(photos: [Photo]) {
-        self.photosSetted = photos
+        self.photos = photos
     }
     
     func showEmptyState() {
-        self.wasEmptyStateDisplayed = true
+        self.didCallEmptyState = true
     }
     
     func showAlert(title: String, message: String, actionTitle: String, handler: @escaping () -> Void) {
-        self.wasAlertDisplayed = true
+        self.didCallShowAlert = true
     }
 }
