@@ -18,6 +18,8 @@
 		7870429A220BB3F800381056 /* JSONParserMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78704299220BB3F800381056 /* JSONParserMock.swift */; };
 		7870429C220BB44100381056 /* URLSessionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7870429B220BB44100381056 /* URLSessionMock.swift */; };
 		7870429E220BB48200381056 /* RequestDataMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7870429D220BB48200381056 /* RequestDataMock.swift */; };
+		787042A6220BC60400381056 /* PhotoListInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787042A5220BC60400381056 /* PhotoListInteractorTests.swift */; };
+		787042A9220BCFB900381056 /* NetworkServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787042A8220BCFB900381056 /* NetworkServiceMock.swift */; };
 		78E8864D22064F0800ABD961 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E8864C22064F0800ABD961 /* Result.swift */; };
 		78E8865022064F7400ABD961 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E8864F22064F7400ABD961 /* HTTPMethod.swift */; };
 		78E8865222064F9000ABD961 /* RequestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E8865122064F9000ABD961 /* RequestData.swift */; };
@@ -67,6 +69,8 @@
 		78704299220BB3F800381056 /* JSONParserMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParserMock.swift; sourceTree = "<group>"; };
 		7870429B220BB44100381056 /* URLSessionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionMock.swift; sourceTree = "<group>"; };
 		7870429D220BB48200381056 /* RequestDataMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDataMock.swift; sourceTree = "<group>"; };
+		787042A5220BC60400381056 /* PhotoListInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListInteractorTests.swift; sourceTree = "<group>"; };
+		787042A8220BCFB900381056 /* NetworkServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceMock.swift; sourceTree = "<group>"; };
 		78E8864C22064F0800ABD961 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		78E8864F22064F7400ABD961 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		78E8865122064F9000ABD961 /* RequestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestData.swift; sourceTree = "<group>"; };
@@ -223,6 +227,39 @@
 			path = Mocks;
 			sourceTree = "<group>";
 		};
+		7870429F220BC48500381056 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				787042A1220BC4A600381056 /* PhotoList */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		787042A1220BC4A600381056 /* PhotoList */ = {
+			isa = PBXGroup;
+			children = (
+				787042A2220BC4CD00381056 /* Interactor */,
+			);
+			path = PhotoList;
+			sourceTree = "<group>";
+		};
+		787042A2220BC4CD00381056 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				787042A7220BCFA000381056 /* Mocks */,
+				787042A5220BC60400381056 /* PhotoListInteractorTests.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		787042A7220BCFA000381056 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				787042A8220BCFB900381056 /* NetworkServiceMock.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		78E8864B22064E6F00ABD961 /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -365,6 +402,7 @@
 			isa = PBXGroup;
 			children = (
 				78704294220B87BE00381056 /* Core */,
+				7870429F220BC48500381056 /* Modules */,
 				78F7947F2204D9AA001C8215 /* Info.plist */,
 			);
 			path = PhotoViewerTests;
@@ -562,7 +600,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				787042A6220BC60400381056 /* PhotoListInteractorTests.swift in Sources */,
 				7870429E220BB48200381056 /* RequestDataMock.swift in Sources */,
+				787042A9220BCFB900381056 /* NetworkServiceMock.swift in Sources */,
 				7870429C220BB44100381056 /* URLSessionMock.swift in Sources */,
 				7870429A220BB3F800381056 /* JSONParserMock.swift in Sources */,
 				78704297220B8A6600381056 /* NetworkServiceTests.swift in Sources */,

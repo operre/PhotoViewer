@@ -11,6 +11,10 @@ import Foundation
 struct PhotosWrapper {
     let photos: [Photo]
     
+    init(photos: [Photo]) {
+        self.photos = photos
+    }
+    
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let photosContainer = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .rootNode)

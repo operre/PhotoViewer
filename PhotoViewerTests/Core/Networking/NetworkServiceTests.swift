@@ -120,6 +120,12 @@ class NetworkServiceTests: XCTestCase {
             }
         }
     }
+    
+    // MARK: - Error Implementation
+    
+    enum MockedError: Error {
+        case anyError
+    }
 }
 
 // MARK: - Photo Equatable
@@ -128,10 +134,4 @@ extension Photo: Equatable {
     public static func == (lhs: Photo, rhs: Photo) -> Bool {
         return lhs.id == rhs.id
     }
-}
-
-// MARK: - Error Implementation
-
-enum MockedError: Error {
-    case anyError
 }
